@@ -3,115 +3,88 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Neon Palm v3 — GTA VI Trophy Guide &amp; Tracker</title>
+<title>Neon Palm — GTA VI Trophy Guide &amp; Tracker</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="top">
-  <div class="titleblock">
-    <h1>Neon Palm <span class="v3">v3</span> — GTA VI Trophy Guide &amp; Tracker</h1>
-    <p class="subtitle">All 55 PlayStation 5 trophies, each with its official name, description and grade, a cited guide in our own words, a roadmap to the platinum, and a tracker that saves in your browser. Unofficial fan guide — not affiliated with Rockstar Games. No official artwork or logos are used.</p>
-  </div>
-  <div class="platbox" id="platbox">
-    <div class="platlabel">Platinum progress</div>
-    <div class="platbar"><div class="platfill" id="platfill"></div></div>
-    <div class="platnum" id="platnum">0/55 earned</div>
+  <div class="brand"><span class="palm">NEON PALM</span><span class="sub">GTA VI · Trophy Guide &amp; Tracker · PS5 · 55 trophies</span></div>
+  <div class="head-right">
+    <div class="plat"><span id="platPct">25%</span><span class="plat-label">to platinum</span><div class="bar"><i id="platBar"></i></div></div>
+    <div class="earned"><b id="earnedCount">14</b><span>/ 55 earned</span></div>
   </div>
 </header>
-<div class="audit" id="audit">Loading audit…</div>
+<div class="audit" id="auditStrip">Loading audit…</div>
 <nav class="tabs" id="tabs">
-  <button data-view="guide" class="tab active">Guide &amp; Tracker</button>
-  <button data-view="roadmap" class="tab">Roadmap S1–S7</button>
-  <button data-view="missables" class="tab">Missables &amp; Watch</button>
-  <button data-view="sources" class="tab">Sources &amp; Disputes</button>
+  <button data-view="guide" class="on">Guide &amp; Tracker</button>
+  <button data-view="roadmap">Roadmap S1–S7</button>
+  <button data-view="missables">Missables &amp; Watch</button>
+  <button data-view="sources">Sources &amp; Matrix</button>
+  <button data-view="save">Spoilers &amp; Save</button>
 </nav>
-<div class="toolbar" id="toolbar">
-  <input id="search" type="search" placeholder="Search a trophy, mission or place…" aria-label="Search trophies">
-  <div class="chips" id="chips"></div>
-  <label class="spoiler"><input type="checkbox" id="spoilerToggle"> Spoiler-safe: hide story trophy names until earned</label>
-  <label class="earnedonly"><input type="checkbox" id="earnedOnly"> Earned only</label>
-</div>
 
-<main>
-<section id="view-guide" class="view active">
-  <div class="grid">
-    <div class="col listcol">
-      <h2>Checklist <span id="listcount"></span></h2>
-      <ol id="list" class="checklist"></ol>
+<section id="view-guide" class="view">
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="Search a trophy…" aria-label="Search trophies">
+    <select id="gradeFilter" aria-label="Filter by grade"><option value="">All grades</option><option value="platinum">Platinum</option><option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option></select>
+    <label class="chk"><input type="checkbox" id="unearnedOnly"> Unearned only</label>
+    <label class="chk"><input type="checkbox" id="spoilerToggle"> Spoilers off</label>
+    <button id="exportBtn" class="btn">Export</button>
+    <label class="btn file">Import<input type="file" id="importFile" accept=".json,application/json" hidden></label>
+  </div>
+  <div class="chips" id="chips"></div>
+  <div class="nextup" id="nextUp"></div>
+  <div class="cols">
+    <div class="list" id="trophyList"></div>
+    <div class="detail" id="trophyDetail"></div>
+  </div>
+</section>
+
+<section id="view-roadmap" class="view" hidden>
+  <h2>Roadmap to the platinum — 7 stages</h2>
+  <p class="lede">Work the stages in order. Each card shows how many of its trophies you have earned.</p>
+  <div class="stages" id="stageGrid"></div>
+</section>
+
+<section id="view-missables" class="view" hidden>
+  <h2>Missables &amp; watch list</h2>
+  <p class="lede">One trophy is possibly missable, two more are worth watching. Everything else can be cleaned up in free roam.</p>
+  <div class="miss-cards" id="missCards"></div>
+  <h3>Source matrix — flagged trophies × sources</h3>
+  <div class="matrix-wrap" id="missMatrix"></div>
+  <p class="note">Guarantees from the guides: a missed optional mission never blocks a trophy, a quest giver who vanishes comes back, and fences that close for good have no trophy impact. [1]</p>
+</section>
+
+<section id="view-sources" class="view" hidden>
+  <h2>Sources — 18 numbered, every one cited</h2>
+  <p class="lede">Read 20 Nov 2026. “Cited by” counts the trophy guides and dispute boxes that cite each source. PowerPyx is the most-cited source.</p>
+  <ol class="sources" id="sourceList"></ol>
+  <h3>Full source matrix — 55 trophies × 18 sources</h3>
+  <p class="lede">A dot means the trophy’s steps or dispute box cite that source.</p>
+  <div class="matrix-wrap" id="fullMatrix"></div>
+</section>
+
+<section id="view-save" class="view" hidden>
+  <h2>Spoilers &amp; save</h2>
+  <div class="save-grid">
+    <div class="panel">
+      <h3>Spoiler setting</h3>
+      <p>When spoilers are off, story trophies you have not earned yet show as hidden — name and description masked until earned.</p>
+      <label class="chk big"><input type="checkbox" id="spoilerToggle2"> Hide unearned story trophies</label>
+      <div class="spoiler-demo" id="spoilerDemo"></div>
     </div>
-    <div class="col detailcol">
-      <div id="detail"></div>
-    </div>
-    <div class="col sidecol" id="sidecol">
-      <section class="panel" id="panel-sources">
-        <h2>Sources <span id="srccount"></span></h2>
-        <ol id="srclist" class="srclist"></ol>
-        <p class="fine">Two lists are deliberately NOT numbered: GamesRadar+ (no article URL found) and GTA Vibes (pre-release, no unique fact). Full reasons on the Sources page.</p>
-      </section>
-      <section class="panel" id="panel-roadmap">
-        <h2>Roadmap S1–S7</h2>
-        <ol id="roadmapmini" class="roadmapmini"></ol>
-      </section>
-      <section class="panel" id="panel-save">
-        <h2>Save — export &amp; import</h2>
-        <p class="fine">Progress saves automatically in this browser (localStorage). Export a file to back it up or move it; import a file or pasted JSON to restore it.</p>
-        <div class="savebtns">
-          <button id="exportBtn">Export save (.json)</button>
-          <label class="filebtn">Import file <input type="file" id="importFile" accept=".json,application/json" hidden></label>
-        </div>
-        <label class="pastelabel" for="importText">Or paste save JSON, then Import:</label>
-        <textarea id="importText" rows="3" placeholder='{"earned":[2,3,4],"progress":{"28":6}}'></textarea>
-        <button id="importTextBtn">Import pasted JSON</button>
-        <label class="pastelabel" for="exportPreview">Current save (preview):</label>
-        <textarea id="exportPreview" rows="3" readonly></textarea>
-        <p class="fine" id="savestate"></p>
-      </section>
+    <div class="panel">
+      <h3>Export &amp; import</h3>
+      <p>Progress lives in this browser (localStorage). Export a file as a backup, or paste JSON back to restore it.</p>
+      <textarea id="exportBox" rows="7" readonly></textarea>
+      <div class="row"><button id="exportBtn2" class="btn">Download export file</button><button id="importBtn2" class="btn">Import pasted JSON</button></div>
+      <textarea id="importBox" rows="4" placeholder="Paste exported JSON here, then Import…"></textarea>
     </div>
   </div>
 </section>
 
-<section id="view-roadmap" class="view">
-  <h2 class="viewtitle">Roadmap to the platinum — seven stages, in play order</h2>
-  <p class="viewintro">Story first, then side strands, activities, collectibles, robberies, and the 100% cleanup. The platinum unlocks automatically once the other 54 are earned. Budget around 200 hours; some guides estimate 250–300 hours.</p>
-  <div class="stagestrip" id="stagestrip"></div>
-  <div id="stagedetail"></div>
-</section>
-
-<section id="view-missables" class="view">
-  <h2 class="viewtitle">Missables &amp; Watch — what can actually go wrong</h2>
-  <p class="viewintro">Five guides count 1 possibly missable trophy; some lists add a second; Push Square counts none. This page shows all three readings and the safe play for each.</p>
-  <div class="misscards" id="misscards"></div>
-  <h3>Full matrix — all 55 trophies by risk</h3>
-  <div class="matrix" id="matrix"></div>
-  <p class="legend"><span class="lg miss">Possibly missable</span> <span class="lg watch">Watch</span> <span class="lg ok">Safe — always available</span></p>
-  <h3>Save strategy (so a miss never costs a playthrough)</h3>
-  <ol class="savelist">
-    <li>15 manual saves + 1 autosave. Save at the start and end of every chapter; rotate 5 spares for free-roam cleanup. [1]</li>
-    <li>Optional missions that vanish (black icon, pink letter) do not affect any trophy. [1]</li>
-    <li>Quest givers who vanish for a while (Kenton) come back. Some fences close permanently — sell stolen goods before their related story mission, with no trophy impact. [1]</li>
-    <li>Collectible magazines in story buildings that lock permanently also spawn elsewhere. [1]</li>
-    <li>Hourglass quests fail after a short window and are, in PowerPyx's words, “not relevant for trophies” — except Yago's race, which can lock Yago's chain. [1][17]</li>
-    <li>Criminal Profile only changes police behaviour; a low profile means police are more likely to shoot on sight. Relationship status between Jason and Lucia does not affect any trophy. [1]</li>
-  </ol>
-</section>
-
-<section id="view-sources" class="view">
-  <h2 class="viewtitle">Sources — 18 numbered, every one cited</h2>
-  <p class="viewintro">Every guide step in this app cites at least one numbered source. “Cited by” counts the trophy guides that cite each source. Read 20 Nov 2026 unless stated.</p>
-  <ol id="srcfull" class="srcfull"></ol>
-  <h3>Not numbered — and why</h3>
-  <ul class="excluded" id="excluded"></ul>
-  <h3>Sources disagree — 11 disputes, both versions shown</h3>
-  <div id="disputes"></div>
-  <h3>Hidden-28 correction</h3>
-  <p class="viewintro">Earlier lists flagged 4 trophies wrong. Verified name-by-name across GTABase, OutputLag and eGamers: the platinum and Strangers &amp; Freaks are VISIBLE; Let’s Go Bowling and Actions Speak Louder are HIDDEN. Total stays 28 hidden = 27 bronze + 1 gold. PSNProfiles returned HTTP 403 when opened on 20 Nov 2026 and was not retried; the hidden flags rest on the three agreeing sources above, not on PSNProfiles.</p>
-</section>
-</main>
-
-<footer>
-  <p>Neon Palm v3 — unofficial fan guide for Grand Theft Auto VI on PlayStation 5. Trophy names, descriptions and grades are PlayStation's official list; all guide text is written for this entry and cites its sources. No Rockstar Games logo, official artwork, box art or game screenshot is used. Works offline: every file it loads is a file under app/.</p>
-</footer>
-<div class="toast" id="toast" role="status"></div>
+<footer>Unofficial fan guide. Not affiliated with Rockstar Games or PlayStation. Trophy names, descriptions and grades as PlayStation publishes them; all guidance in our own words, cited to its sources. Works fully offline — no network requests at run time.</footer>
+<div class="toast" id="toast" hidden></div>
 <script src="app.js"></script>
 </body>
 </html>
