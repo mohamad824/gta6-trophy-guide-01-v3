@@ -25,7 +25,9 @@ async function copyTree(from, to) {
 async function main() {
   const indexStat = await stat(join(repoRoot, "app", "index.html"));
   if (!indexStat.isFile()) throw new Error("app/index.html is missing");
-  await rm(outDir, { recursive: true, force: true });
+  await rm(join(outDir, "app"), { recursive: true, force: true });
+  await rm(join(outDir, "screenshots"), { recursive: true, force: true });
+  await rm(join(outDir, "dossier.json"), { force: true });
   await mkdir(outDir, { recursive: true });
   await copyTree(join(repoRoot, "app"), join(outDir, "app"));
   await copyTree(join(repoRoot, "screenshots"), join(outDir, "screenshots"));
