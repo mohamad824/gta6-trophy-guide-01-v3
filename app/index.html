@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Palm v3 — GTA VI Trophy Guide &amp; Tracker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="titleblock">
+    <h1>Neon Palm <span class="v3">v3</span> — GTA VI Trophy Guide &amp; Tracker</h1>
+    <p class="subtitle">All 55 PlayStation 5 trophies, each with its official name, description and grade, a cited guide in our own words, a roadmap to the platinum, and a tracker that saves in your browser. Unofficial fan guide — not affiliated with Rockstar Games. No official artwork or logos are used.</p>
+  </div>
+  <div class="platbox" id="platbox">
+    <div class="platlabel">Platinum progress</div>
+    <div class="platbar"><div class="platfill" id="platfill"></div></div>
+    <div class="platnum" id="platnum">0/55 earned</div>
+  </div>
+</header>
+<div class="audit" id="audit">Loading audit…</div>
+<nav class="tabs" id="tabs">
+  <button data-view="guide" class="tab active">Guide &amp; Tracker</button>
+  <button data-view="roadmap" class="tab">Roadmap S1–S7</button>
+  <button data-view="missables" class="tab">Missables &amp; Watch</button>
+  <button data-view="sources" class="tab">Sources &amp; Disputes</button>
+</nav>
+<div class="toolbar" id="toolbar">
+  <input id="search" type="search" placeholder="Search a trophy, mission or place…" aria-label="Search trophies">
+  <div class="chips" id="chips"></div>
+  <label class="spoiler"><input type="checkbox" id="spoilerToggle"> Spoiler-safe: hide story trophy names until earned</label>
+  <label class="earnedonly"><input type="checkbox" id="earnedOnly"> Earned only</label>
+</div>
+
+<main>
+<section id="view-guide" class="view active">
+  <div class="grid">
+    <div class="col listcol">
+      <h2>Checklist <span id="listcount"></span></h2>
+      <ol id="list" class="checklist"></ol>
+    </div>
+    <div class="col detailcol">
+      <div id="detail"></div>
+    </div>
+    <div class="col sidecol" id="sidecol">
+      <section class="panel" id="panel-sources">
+        <h2>Sources <span id="srccount"></span></h2>
+        <ol id="srclist" class="srclist"></ol>
+        <p class="fine">Two lists are deliberately NOT numbered: GamesRadar+ (no article URL found) and GTA Vibes (pre-release, no unique fact). Full reasons on the Sources page.</p>
+      </section>
+      <section class="panel" id="panel-roadmap">
+        <h2>Roadmap S1–S7</h2>
+        <ol id="roadmapmini" class="roadmapmini"></ol>
+      </section>
+      <section class="panel" id="panel-save">
+        <h2>Save — export &amp; import</h2>
+        <p class="fine">Progress saves automatically in this browser (localStorage). Export a file to back it up or move it; import a file or pasted JSON to restore it.</p>
+        <div class="savebtns">
+          <button id="exportBtn">Export save (.json)</button>
+          <label class="filebtn">Import file <input type="file" id="importFile" accept=".json,application/json" hidden></label>
+        </div>
+        <label class="pastelabel" for="importText">Or paste save JSON, then Import:</label>
+        <textarea id="importText" rows="3" placeholder='{"earned":[2,3,4],"progress":{"28":6}}'></textarea>
+        <button id="importTextBtn">Import pasted JSON</button>
+        <label class="pastelabel" for="exportPreview">Current save (preview):</label>
+        <textarea id="exportPreview" rows="3" readonly></textarea>
+        <p class="fine" id="savestate"></p>
+      </section>
+    </div>
+  </div>
+</section>
+
+<section id="view-roadmap" class="view">
+  <h2 class="viewtitle">Roadmap to the platinum — seven stages, in play order</h2>
+  <p class="viewintro">Story first, then side strands, activities, collectibles, robberies, and the 100% cleanup. The platinum unlocks automatically once the other 54 are earned. Budget around 200 hours; some guides estimate 250–300 hours.</p>
+  <div class="stagestrip" id="stagestrip"></div>
+  <div id="stagedetail"></div>
+</section>
+
+<section id="view-missables" class="view">
+  <h2 class="viewtitle">Missables &amp; Watch — what can actually go wrong</h2>
+  <p class="viewintro">Five guides count 1 possibly missable trophy; some lists add a second; Push Square counts none. This page shows all three readings and the safe play for each.</p>
+  <div class="misscards" id="misscards"></div>
+  <h3>Full matrix — all 55 trophies by risk</h3>
+  <div class="matrix" id="matrix"></div>
+  <p class="legend"><span class="lg miss">Possibly missable</span> <span class="lg watch">Watch</span> <span class="lg ok">Safe — always available</span></p>
+  <h3>Save strategy (so a miss never costs a playthrough)</h3>
+  <ol class="savelist">
+    <li>15 manual saves + 1 autosave. Save at the start and end of every chapter; rotate 5 spares for free-roam cleanup. [1]</li>
+    <li>Optional missions that vanish (black icon, pink letter) do not affect any trophy. [1]</li>
+    <li>Quest givers who vanish for a while (Kenton) come back. Some fences close permanently — sell stolen goods before their related story mission, with no trophy impact. [1]</li>
+    <li>Collectible magazines in story buildings that lock permanently also spawn elsewhere. [1]</li>
+    <li>Hourglass quests fail after a short window and are, in PowerPyx's words, “not relevant for trophies” — except Yago's race, which can lock Yago's chain. [1][17]</li>
+    <li>Criminal Profile only changes police behaviour; a low profile means police are more likely to shoot on sight. Relationship status between Jason and Lucia does not affect any trophy. [1]</li>
+  </ol>
+</section>
+
+<section id="view-sources" class="view">
+  <h2 class="viewtitle">Sources — 18 numbered, every one cited</h2>
+  <p class="viewintro">Every guide step in this app cites at least one numbered source. “Cited by” counts the trophy guides that cite each source. Read 20 Nov 2026 unless stated.</p>
+  <ol id="srcfull" class="srcfull"></ol>
+  <h3>Not numbered — and why</h3>
+  <ul class="excluded" id="excluded"></ul>
+  <h3>Sources disagree — 11 disputes, both versions shown</h3>
+  <div id="disputes"></div>
+  <h3>Hidden-28 correction</h3>
+  <p class="viewintro">Earlier lists flagged 4 trophies wrong. Verified name-by-name across GTABase, OutputLag and eGamers: the platinum and Strangers &amp; Freaks are VISIBLE; Let’s Go Bowling and Actions Speak Louder are HIDDEN. Total stays 28 hidden = 27 bronze + 1 gold. PSNProfiles returned HTTP 403 when opened on 20 Nov 2026 and was not retried; the hidden flags rest on the three agreeing sources above, not on PSNProfiles.</p>
+</section>
+</main>
+
+<footer>
+  <p>Neon Palm v3 — unofficial fan guide for Grand Theft Auto VI on PlayStation 5. Trophy names, descriptions and grades are PlayStation's official list; all guide text is written for this entry and cites its sources. No Rockstar Games logo, official artwork, box art or game screenshot is used. Works offline: every file it loads is a file under app/.</p>
+</footer>
+<div class="toast" id="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>
